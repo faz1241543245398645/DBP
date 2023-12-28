@@ -1,0 +1,17 @@
+select * from doctor;
+
+alter table doctor
+add dob date);
+
+alter table emp
+drop column dob;
+
+alter table doctor
+modify doc_name varchar2(5);
+
+
+
+desc doctor
+desc emp
+
+desc emp

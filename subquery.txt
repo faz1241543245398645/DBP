@@ -1,0 +1,11 @@
+SQL> --create table doc as select * from doctor;
+SQL> -- when you do subquery you can use your where clause
+SQL> -- you use subquery when you dont know the data
+SQL> -- insert into doc(doc_id,doc_name) (select doc_id,doc_name from doctor where area = 'Rehab')
+SQL> -- select pt_fname||' '||ptlname, doc_name from parient natural join doctor
+SQL> -- where doc_id = (select doc_id from doctor where doc_name = 'Smith')
+SQL> -- where salpermon > (select salpermon from doctor where doc_name = 'Smith')
+SQL> -- compare same data type
+SQL> -- IN exacly the same
+SQL> -- ANY , with
+SQL> spool off

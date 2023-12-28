@@ -1,0 +1,18 @@
+accept patid prompt 'Please enter a valid patient id: '
+
+declare
+  v_ptid number := &patid;
+  v_ptname varchar2(30);
+  v_docid  doctor.doc_id%type;
+  v_docname  doctor.doc_name%type;
+
+begin
+  select pt_fname||' '||pt_lname patname, doc_id, doc_name
+  into v_ptname, v_docid, v_docname 
+  from patient natural join doctor
+  where pt_id = v_ptid;
+
+  dbms_output.put_line('Patient name: '||v_ptname);
+  dbms_output.put_line('He/she is the patient of Dr. '||v_docname||' ('||v_docid||')');
+end;
+/

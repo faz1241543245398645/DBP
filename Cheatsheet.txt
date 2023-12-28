@@ -1,0 +1,3 @@
+clear screen
+set line x
+show error from function x

@@ -1,0 +1,66 @@
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BILLING                        TABLE                                            
+CUSTOMER                       TABLE                                            
+DOC                            SYNONYM                                          
+DOCTOR                         TABLE                                            
+MOVIE                          TABLE                                            
+OWNER                          TABLE                                            
+PATIENT                        TABLE                                            
+PET                            TABLE                                            
+REGISTRATIONPET                TABLE                                            
+RENTAL                         TABLE                                            
+SERVICEPET                     TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STAFF                          TABLE                                            
+T1                             TABLE                                            
+T2                             TABLE                                            
+T3                             TABLE                                            
+T4                             VIEW                                             
+TEST                           TABLE                                            
+
+17 rows selected.
+
+SQL> desc t1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER
+ NAME                                               VARCHAR2(20)
+
+SQL> select constraint_name, constraint_type
+  2  from user_constraints
+  3  where table_name = 'T1';
+
+CONSTRAINT_NAME                C                                                
+------------------------------ -                                                
+SYS_C007872                    P                                                
+
+SQL> alter table t1
+  2  drop primary key;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type
+  2  from user_constraints
+  3  where table_name = 'T1';
+
+no rows selected
+
+SQL> alter table t1
+  2  add constraint t1_id_pk primary key(id);
+
+Table altered.
+
+SQL> select constraint_name, constraint_type
+  2  from user_constraints
+  3  where table_name = 'T1';
+
+CONSTRAINT_NAME                C                                                
+------------------------------ -                                                
+T1_ID_PK                       P                                                
+
+SQL> spool off

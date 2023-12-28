@@ -1,0 +1,17 @@
+create table doc as (select * from doctor);
+
+create table doc2 as (select * from doctor where salpermon > 10000);
+
+create table doc3(dname, sal) as (select doc_name, salpermon from doctor);
+
+create table doc4 as (select doc_name doctor, salpermon salary from doctor);
+
+create table doc5 as (select * from doctor where 1=2);
+
+desc doctor
+desc doc
+desc doc2
+desc doc3
+desc doc4
+
+select * from doc5;

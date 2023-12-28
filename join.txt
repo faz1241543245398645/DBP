@@ -1,0 +1,374 @@
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update patient
+  2  set doc_id - 504
+  3* where doc_id is null
+SQL> describe dept
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(14)
+ LOC                                                VARCHAR2(13)
+
+SQL> select ename, sal, grade
+  2  from emp , salgrade
+  3  where sal between losal and hisal
+  4  order by 3;
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+ADAMS            1100          1                                                
+ADAMS            1100          1                                                
+ADAMS            1100          1                                                
+ADAMS            1100          1                                                
+JAMES             950          1                                                
+SMITH             800          1                                                
+JAMES             950          1                                                
+JAMES             950          1                                                
+SMITH             800          1                                                
+SMITH             800          1                                                
+SMITH             800          1                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+JAMES             950          1                                                
+MILLER           1300          2                                                
+MILLER           1300          2                                                
+MILLER           1300          2                                                
+MILLER           1300          2                                                
+MARTIN           1250          2                                                
+MARTIN           1250          2                                                
+MARTIN           1250          2                                                
+MARTIN           1250          2                                                
+WARD             1250          2                                                
+WARD             1250          2                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+WARD             1250          2                                                
+WARD             1250          2                                                
+ALLEN            1600          3                                                
+ALLEN            1600          3                                                
+ALLEN            1600          3                                                
+ALLEN            1600          3                                                
+TURNER           1500          3                                                
+TURNER           1500          3                                                
+TURNER           1500          3                                                
+TURNER           1500          3                                                
+CLARK            2450          4                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+CLARK            2450          4                                                
+CLARK            2450          4                                                
+BLAKE            2850          4                                                
+BLAKE            2850          4                                                
+BLAKE            2850          4                                                
+BLAKE            2850          4                                                
+JONES            2975          4                                                
+JONES            2975          4                                                
+JONES            2975          4                                                
+JONES            2975          4                                                
+FORD             3000          4                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+FORD             3000          4                                                
+FORD             3000          4                                                
+FORD             3000          4                                                
+SCOTT            3000          4                                                
+SCOTT            3000          4                                                
+SCOTT            3000          4                                                
+SCOTT            3000          4                                                
+CLARK            2450          4                                                
+KING             5000          5                                                
+KING             5000          5                                                
+KING             5000          5                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+KING             5000          5                                                
+
+56 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> #pk and fk in the same table
+SP2-0734: unknown command beginning "pk and fk ..." - rest of line ignored.
+SQL> -- testing comment
+SQL> -- pk need to exist first before it can refer
+SQL> -- thats why pk and fk should not be in the same table
+SQL> select staff.ename staffname, boss.ename bossname
+  2  from emp staff, emp boss
+  3  where staff.mgr = boss.empno;
+
+STAFFNAME  BOSSNAME                                                             
+---------- ----------                                                           
+JONES      KING                                                                 
+CLARK      KING                                                                 
+BLAKE      KING                                                                 
+JAMES      BLAKE                                                                
+TURNER     BLAKE                                                                
+MARTIN     BLAKE                                                                
+WARD       BLAKE                                                                
+ALLEN      BLAKE                                                                
+MILLER     CLARK                                                                
+FORD       JONES                                                                
+SCOTT      JONES                                                                
+
+STAFFNAME  BOSSNAME                                                             
+---------- ----------                                                           
+ADAMS      SCOTT                                                                
+SMITH      FORD                                                                 
+
+13 rows selected.
+
+SQL> -- we use table alias and col alias
+SQL> -- jones reporting to KING
+SQL> select staff.ename staffname, boss.ename bossname
+  2  from emp staff join emp boss
+  3  on staff.mgr = boss.empno;
+
+STAFFNAME  BOSSNAME                                                             
+---------- ----------                                                           
+JONES      KING                                                                 
+CLARK      KING                                                                 
+BLAKE      KING                                                                 
+JAMES      BLAKE                                                                
+TURNER     BLAKE                                                                
+MARTIN     BLAKE                                                                
+WARD       BLAKE                                                                
+ALLEN      BLAKE                                                                
+MILLER     CLARK                                                                
+FORD       JONES                                                                
+SCOTT      JONES                                                                
+
+STAFFNAME  BOSSNAME                                                             
+---------- ----------                                                           
+ADAMS      SCOTT                                                                
+SMITH      FORD                                                                 
+
+13 rows selected.
+
+SQL> -- this is the self joint
+SQL> -- reason why self joint couldn't use natura join, bcs it cant use qualifier
+SQL> -- haha tak sempat
+SQL> ed
+Wrote file afiedt.buf
+
+  1  -- RIGHT OUTER JOIN
+  2  select ename, dept.deptno, dname
+  3  from emp right join dept
+  4* on emp.deptno = dept.deptno;
+SQL> /
+-- RIGHT OUTER JOIN
+*
+ERROR at line 1:
+ORA-24374: define not done before fetch or execute and fetch 
+
+
+SQL> /
+-- RIGHT OUTER JOIN
+*
+ERROR at line 1:
+ORA-24374: define not done before fetch or execute and fetch 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  -- RIGHT OUTER JOIN
+  2  select empno, ename, dept.deptno, dname
+  3  from emp right join dept
+  4* on emp.deptno = dept.deptno;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  -- RIGHT OUTER JOIN
+  2  select empno, ename, dept.deptno, dname
+  3  from emp right join dept
+  4* where emp.deptno = dept.deptno;
+SQL> -- the position of table is matters
+SQL> -- you cannot put from dept right join dept
+SQL> -- from dept left join emp
+SQL> -- FULL OUTER JOIN
+SQL> -- from emp full outer join dept
+SQL> select empno, ename, dept.deptno, dname
+  2  from dept,emp
+  3  where emp.deptno (+) = dept.deptno
+  4  -- where join doesnt care the postion of dept and emp
+  5  -- but for (+) extra department , you need to put at other side/opposite
+  6  -- you cannot put (+) at both sides
+  7  --where emp.deptno(+) = dept.deptno(+)
+  8  ;
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7839 KING               10 ACCOUNTING                                     
+      7698 BLAKE              30 SALES                                          
+      7782 CLARK              10 ACCOUNTING                                     
+      7566 JONES              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7902 FORD               20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7499 ALLEN              30 SALES                                          
+      7521 WARD               30 SALES                                          
+      7654 MARTIN             30 SALES                                          
+      7844 TURNER             30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7876 ADAMS              20 RESEARCH                                       
+      7900 JAMES              30 SALES                                          
+      7934 MILLER             10 ACCOUNTING                                     
+                              40 OPERATIONS                                     
+
+15 rows selected.
+
+SQL> /
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7839 KING               10 ACCOUNTING                                     
+      7698 BLAKE              30 SALES                                          
+      7782 CLARK              10 ACCOUNTING                                     
+      7566 JONES              20 RESEARCH                                       
+      7788 SCOTT              20 RESEARCH                                       
+      7902 FORD               20 RESEARCH                                       
+      7369 SMITH              20 RESEARCH                                       
+      7499 ALLEN              30 SALES                                          
+      7521 WARD               30 SALES                                          
+      7654 MARTIN             30 SALES                                          
+      7844 TURNER             30 SALES                                          
+
+     EMPNO ENAME          DEPTNO DNAME                                          
+---------- ---------- ---------- --------------                                 
+      7876 ADAMS              20 RESEARCH                                       
+      7900 JAMES              30 SALES                                          
+      7934 MILLER             10 ACCOUNTING                                     
+                              40 OPERATIONS                                     
+
+15 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  -- staff that have no boss
+  2  select.ename staffname, boss.ename bossname
+  3  from emp staff left join emp boss
+  4  -- if u do right join , you will see staff who is not a boss
+  5* on staff.mgr = boss.empno;
+  6  ed
+  7  ;
+-- staff that have no boss
+*
+ERROR at line 1:
+ORA-24374: define not done before fetch or execute and fetch 
+
+
+SQL> -- test
+SQL> select ename from emp
+  2  -- test;
+
+ENAME                                                                           
+----------                                                                      
+KING                                                                            
+BLAKE                                                                           
+CLARK                                                                           
+JONES                                                                           
+SCOTT                                                                           
+FORD                                                                            
+SMITH                                                                           
+ALLEN                                                                           
+WARD                                                                            
+MARTIN                                                                          
+TURNER                                                                          
+
+ENAME                                                                           
+----------                                                                      
+ADAMS                                                                           
+JAMES                                                                           
+MILLER                                                                          
+
+14 rows selected.
+
+SQL> -- cartesian join means : join everything
+SQL> -- the word is cross join
+SQL> -- natural join you are not allowed to use col qualifier
+SQL> -- non equi you use using " between .. and "
+SQL> -- when you want to compare values with a range of values
+SQL> -- SET OPERATORS
+SQL> -- diff union with union all
+SQL> -- * union will show duplicate values
+SQL> -- wait union all will show duplicate until 5
+SQL> spool off

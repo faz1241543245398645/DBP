@@ -1,0 +1,142 @@
+SQL> select * from student;
+
+STUDENTI NAME           S        AGE CITY                 BRANC STAFF           
+-------- -------------- - ---------- -------------------- ----- -----           
+SU003    Cindy          F         14 Johor Bahru          B0002 S0003           
+SU001    Alice          F         15 Kuala Lumpur         B0001 S0001           
+SU002    Bob            M         16 Penang               B0001 S0002           
+
+SQL> update student
+  2  set name = 'Fadzwan',
+  3  set city = 'Dubai',
+  4  .
+SQL> update student
+  2  set name = 'Fadzwan',
+  3  set city = 'Dubai'
+  4  .
+SQL> update student
+  2  set name = 'Fadzwan'
+  3  , set studentid = '2116337',
+  4  set city = 'Dubai'
+  5  where rownum = 3;
+, set studentid = '2116337',
+  *
+ERROR at line 3:
+ORA-01747: invalid user.table.column, table.column, or column specification 
+
+
+SQL> update student
+  2  set name = 'Fadzwan,
+  3  .
+SQL> update student
+  2  set name = 'Fadzwan',
+  3  set city = 'Dubai'
+  4  where rownum = 3;
+set city = 'Dubai'
+*
+ERROR at line 3:
+ORA-01747: invalid user.table.column, table.column, or column specification 
+
+
+SQL> update student
+  2  set
+  3  name = 'Fadzwan'
+  4  , studentid = '2116337',
+  5  city = 'Dubai'
+  6  where rownum = 3;
+
+0 rows updated.
+
+SQL> select * from student where rownum = 3;
+
+no rows selected
+
+SQL> select * from student where rownum = 2;
+
+no rows selected
+
+SQL> select * from student where rownum = 1;
+
+STUDENTI NAME           S        AGE CITY                 BRANC STAFF           
+-------- -------------- - ---------- -------------------- ----- -----           
+SU003    Cindy          F         14 Johor Bahru          B0002 S0003           
+
+SQL> select * from student where rownum = 0;
+
+no rows selected
+
+SQL> select * from student;
+
+STUDENTI NAME           S        AGE CITY                 BRANC STAFF           
+-------- -------------- - ---------- -------------------- ----- -----           
+SU003    Cindy          F         14 Johor Bahru          B0002 S0003           
+SU001    Alice          F         15 Kuala Lumpur         B0001 S0001           
+SU002    Bob            M         16 Penang               B0001 S0002           
+
+SQL> select rownum from student;
+
+    ROWNUM                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         3                                                                      
+
+SQL> select rownum from student where studentid = 's001';
+
+no rows selected
+
+SQL> select rownum from student where studentid = 's002';
+
+no rows selected
+
+SQL> select rownum from student where studentid = 's003';
+
+no rows selected
+
+SQL> select rownum from student;
+
+    ROWNUM                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         3                                                                      
+
+SQL> select rownum , name , studentid from student;
+
+    ROWNUM NAME           STUDENTI                                              
+---------- -------------- --------                                              
+         1 Cindy          SU003                                                 
+         2 Alice          SU001                                                 
+         3 Bob            SU002                                                 
+
+SQL> select * from student where rownum = 1;
+
+STUDENTI NAME           S        AGE CITY                 BRANC STAFF           
+-------- -------------- - ---------- -------------------- ----- -----           
+SU003    Cindy          F         14 Johor Bahru          B0002 S0003           
+
+SQL> update stundet
+  2  set
+  3  name = 'Mohd. Fadzwan',
+  4  studentid = '2116337',
+  5  city = 'Dubai'
+  6  where rownum = 1;
+update stundet
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update student
+  2  set
+  3  name = 'Mohd. Fadzwan',
+  4  studentid = '2116337',
+  5  city = 'Dubai'
+  6* where rownum = 3
+
+1 row updated.
+
+SQL> spool off

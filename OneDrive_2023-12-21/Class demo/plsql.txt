@@ -1,0 +1,10 @@
+accept num1 prompt 'Pls enter loan amount: '
+accept num2 prompt 'Pls enter interest: '
+declare 
+	loan number  := &num1;
+	int_amt number := &num2;
+	mthpay number;
+begin
+	mthpay := (load _ int_amt)/12;
+	dbms_output.put_line('the monthly payment: '||to_char(mthpay,'$99,999.99');
+end;

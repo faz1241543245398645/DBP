@@ -1,0 +1,1069 @@
+SQL> l
+  1  select constraint_name, constraint_type, search_condition
+  2* from user_constraints
+SQL> /
+
+CONSTRAINT_NAME                C SEARCH_CONDITION                               
+------------------------------ - ------------------------------                 
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL                         
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal                 
+                                 a')                                            
+                                                                                
+SERVICEPET_PET_ID_UK           U                                                
+SYS_C007982                    C "PET_TYPE" IS NOT NULL                         
+PET_PET_NAME_UK                U                                                
+PET_PET_ID_PK                  P                                                
+OWNER_OWNER_ID_PK              P                                                
+REGISTRATIONPET_REG_ID_PK      P                                                
+REGISTRATIONPET_OWNER_ID_FK    R                                                
+
+CONSTRAINT_NAME                C SEARCH_CONDITION                               
+------------------------------ - ------------------------------                 
+REGISTRATIONPET_PET_ID_FK      R                                                
+SERVICEPET_SERVICE_ID_PK       P                                                
+SERVICEPET_PET_ID_FK           R                                                
+DOCTOR_DOC_ID_PK               P                                                
+BILLING_PT_ID_PK               P                                                
+PATIENT_PT_ID_PK               P                                                
+PATIENT_DOC_ID_FK              R                                                
+CUST_C_ID_PK                   P                                                
+MOVIE_M_ID_PK                  P                                                
+RENTAL_PK                      P                                                
+RENTAL_C_ID_FK                 R                                                
+
+CONSTRAINT_NAME                C SEARCH_CONDITION                               
+------------------------------ - ------------------------------                 
+RENTAL_M_ID_FK                 R                                                
+SYS_C007984                    C "PET_TYPE" IS NOT NULL                         
+
+22 rows selected.
+
+SQL> l
+  1  select constraint_name, constraint_type, search_condition
+  2* from user_constraints
+SQL> select constraint_name, constraint_type, search_condition, status
+  2  from user_constraints;
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL         DISABLED        
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal ENABLED         
+                                 a')                                            
+                                                                                
+SERVICEPET_PET_ID_UK           U                                ENABLED         
+SYS_C007982                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET_PET_NAME_UK                U                                ENABLED         
+PET_PET_ID_PK                  P                                ENABLED         
+OWNER_OWNER_ID_PK              P                                ENABLED         
+REGISTRATIONPET_REG_ID_PK      P                                ENABLED         
+REGISTRATIONPET_OWNER_ID_FK    R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+REGISTRATIONPET_PET_ID_FK      R                                ENABLED         
+SERVICEPET_SERVICE_ID_PK       P                                ENABLED         
+SERVICEPET_PET_ID_FK           R                                ENABLED         
+DOCTOR_DOC_ID_PK               P                                ENABLED         
+BILLING_PT_ID_PK               P                                ENABLED         
+PATIENT_PT_ID_PK               P                                ENABLED         
+PATIENT_DOC_ID_FK              R                                ENABLED         
+CUST_C_ID_PK                   P                                ENABLED         
+MOVIE_M_ID_PK                  P                                ENABLED         
+RENTAL_PK                      P                                ENABLED         
+RENTAL_C_ID_FK                 R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+RENTAL_M_ID_FK                 R                                ENABLED         
+SYS_C007984                    C "PET_TYPE" IS NOT NULL         ENABLED         
+
+22 rows selected.
+
+SQL> alter table pet
+  2  disable constraint PET_PET_NAME_UK;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type, search_condition, status
+  2  from user_constraints;
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL         DISABLED        
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal ENABLED         
+                                 a')                                            
+                                                                                
+SERVICEPET_PET_ID_UK           U                                ENABLED         
+SYS_C007982                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET_PET_NAME_UK                U                                DISABLED        
+PET_PET_ID_PK                  P                                ENABLED         
+OWNER_OWNER_ID_PK              P                                ENABLED         
+REGISTRATIONPET_REG_ID_PK      P                                ENABLED         
+REGISTRATIONPET_OWNER_ID_FK    R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+REGISTRATIONPET_PET_ID_FK      R                                ENABLED         
+SERVICEPET_SERVICE_ID_PK       P                                ENABLED         
+SERVICEPET_PET_ID_FK           R                                ENABLED         
+DOCTOR_DOC_ID_PK               P                                ENABLED         
+BILLING_PT_ID_PK               P                                ENABLED         
+PATIENT_PT_ID_PK               P                                ENABLED         
+PATIENT_DOC_ID_FK              R                                ENABLED         
+CUST_C_ID_PK                   P                                ENABLED         
+MOVIE_M_ID_PK                  P                                ENABLED         
+RENTAL_PK                      P                                ENABLED         
+RENTAL_C_ID_FK                 R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+RENTAL_M_ID_FK                 R                                ENABLED         
+SYS_C007984                    C "PET_TYPE" IS NOT NULL         ENABLED         
+
+22 rows selected.
+
+SQL> alter table pet
+  2  enable constraint PET_PET_NAME_UK;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type, search_condition, status
+  2  from user_constraints;
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL         DISABLED        
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal ENABLED         
+                                 a')                                            
+                                                                                
+SERVICEPET_PET_ID_UK           U                                ENABLED         
+SYS_C007982                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET_PET_NAME_UK                U                                ENABLED         
+PET_PET_ID_PK                  P                                ENABLED         
+OWNER_OWNER_ID_PK              P                                ENABLED         
+REGISTRATIONPET_REG_ID_PK      P                                ENABLED         
+REGISTRATIONPET_OWNER_ID_FK    R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+REGISTRATIONPET_PET_ID_FK      R                                ENABLED         
+SERVICEPET_SERVICE_ID_PK       P                                ENABLED         
+SERVICEPET_PET_ID_FK           R                                ENABLED         
+DOCTOR_DOC_ID_PK               P                                ENABLED         
+BILLING_PT_ID_PK               P                                ENABLED         
+PATIENT_PT_ID_PK               P                                ENABLED         
+PATIENT_DOC_ID_FK              R                                ENABLED         
+CUST_C_ID_PK                   P                                ENABLED         
+MOVIE_M_ID_PK                  P                                ENABLED         
+RENTAL_PK                      P                                ENABLED         
+RENTAL_C_ID_FK                 R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+RENTAL_M_ID_FK                 R                                ENABLED         
+SYS_C007984                    C "PET_TYPE" IS NOT NULL         ENABLED         
+
+22 rows selected.
+
+SQL> alter table pet
+  2  enable constraint PET_PET_NAME_NN;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type, search_condition, status
+  2  from user_constraints;
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL         ENABLED         
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal ENABLED         
+                                 a')                                            
+                                                                                
+SERVICEPET_PET_ID_UK           U                                ENABLED         
+SYS_C007982                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET_PET_NAME_UK                U                                ENABLED         
+PET_PET_ID_PK                  P                                ENABLED         
+OWNER_OWNER_ID_PK              P                                ENABLED         
+REGISTRATIONPET_REG_ID_PK      P                                ENABLED         
+REGISTRATIONPET_OWNER_ID_FK    R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+REGISTRATIONPET_PET_ID_FK      R                                ENABLED         
+SERVICEPET_SERVICE_ID_PK       P                                ENABLED         
+SERVICEPET_PET_ID_FK           R                                ENABLED         
+DOCTOR_DOC_ID_PK               P                                ENABLED         
+BILLING_PT_ID_PK               P                                ENABLED         
+PATIENT_PT_ID_PK               P                                ENABLED         
+PATIENT_DOC_ID_FK              R                                ENABLED         
+CUST_C_ID_PK                   P                                ENABLED         
+MOVIE_M_ID_PK                  P                                ENABLED         
+RENTAL_PK                      P                                ENABLED         
+RENTAL_C_ID_FK                 R                                ENABLED         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+RENTAL_M_ID_FK                 R                                ENABLED         
+SYS_C007984                    C "PET_TYPE" IS NOT NULL         ENABLED         
+
+22 rows selected.
+
+SQL> alter table pet
+  2  drop constraint SYS_C007984;
+drop constraint SYS_C007984
+                *
+ERROR at line 2:
+ORA-02443: Cannot drop constraint  - nonexistent constraint 
+
+
+SQL> select constraint_name, constraint_type, search_condition, status, table_name
+  2  from user_constraints;
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+PET_PET_NAME_NN                C "PET_NAME" IS NOT NULL         ENABLED         
+PET                                                                             
+                                                                                
+PET_PET_TYPE_CK                C pet_type in ('Cat','Dog','Koal ENABLED         
+                                 a')                                            
+PET                                                                             
+                                                                                
+SERVICEPET_PET_ID_UK           U                                ENABLED         
+SERVICEPET                                                                      
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+SYS_C007982                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET                                                                             
+                                                                                
+PET_PET_NAME_UK                U                                ENABLED         
+PET                                                                             
+                                                                                
+PET_PET_ID_PK                  P                                ENABLED         
+PET                                                                             
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+OWNER_OWNER_ID_PK              P                                ENABLED         
+OWNER                                                                           
+                                                                                
+REGISTRATIONPET_REG_ID_PK      P                                ENABLED         
+REGISTRATIONPET                                                                 
+                                                                                
+REGISTRATIONPET_OWNER_ID_FK    R                                ENABLED         
+REGISTRATIONPET                                                                 
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+REGISTRATIONPET_PET_ID_FK      R                                ENABLED         
+REGISTRATIONPET                                                                 
+                                                                                
+SERVICEPET_SERVICE_ID_PK       P                                ENABLED         
+SERVICEPET                                                                      
+                                                                                
+SERVICEPET_PET_ID_FK           R                                ENABLED         
+SERVICEPET                                                                      
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+DOCTOR_DOC_ID_PK               P                                ENABLED         
+DOCTOR                                                                          
+                                                                                
+BILLING_PT_ID_PK               P                                ENABLED         
+BILLING                                                                         
+                                                                                
+PATIENT_PT_ID_PK               P                                ENABLED         
+PATIENT                                                                         
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+PATIENT_DOC_ID_FK              R                                ENABLED         
+PATIENT                                                                         
+                                                                                
+CUST_C_ID_PK                   P                                ENABLED         
+CUSTOMER                                                                        
+                                                                                
+MOVIE_M_ID_PK                  P                                ENABLED         
+MOVIE                                                                           
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+RENTAL_PK                      P                                ENABLED         
+RENTAL                                                                          
+                                                                                
+RENTAL_C_ID_FK                 R                                ENABLED         
+RENTAL                                                                          
+                                                                                
+RENTAL_M_ID_FK                 R                                ENABLED         
+RENTAL                                                                          
+
+CONSTRAINT_NAME                C SEARCH_CONDITION               STATUS          
+------------------------------ - ------------------------------ --------        
+TABLE_NAME                                                                      
+------------------------------                                                  
+                                                                                
+SYS_C007984                    C "PET_TYPE" IS NOT NULL         ENABLED         
+PET2                                                                            
+                                                                                
+
+22 rows selected.
+
+SQL> alter table pet2
+  2  drop constraint SYS_C007984;
+
+Table altered.
+
+SQL> cle scr
+
+SQL> select * from pet2;
+
+no rows selected
+
+SQL> create table pet3 as select * from pet;
+
+Table created.
+
+SQL> select * from pet2;
+
+no rows selected
+
+SQL> select * from pet;
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       411                                                                      
+Oyen                                                                            
+Cat                                                                             
+       711                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       412                                                                      
+Fluffy                                                                          
+Cat                                                                             
+       712                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       413                                                                      
+Albab                                                                           
+Cat                                                                             
+       713                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       414                                                                      
+Miko                                                                            
+Dog                                                                             
+       714                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       415                                                                      
+Kiara                                                                           
+Dog                                                                             
+       715                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       416                                                                      
+Mok                                                                             
+Cat                                                                             
+       716                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       417                                                                      
+Joji                                                                            
+Dog                                                                             
+       717                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       418                                                                      
+Fredie                                                                          
+Cat                                                                             
+       718                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       419                                                                      
+Azhar                                                                           
+Cat                                                                             
+       719                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       420                                                                      
+John                                                                            
+Dog                                                                             
+       720                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       155                                                                      
+Ju                                                                              
+Koala                                                                           
+       666                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       421                                                                      
+ssss                                                                            
+Cat                                                                             
+       666                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       422                                                                      
+sue                                                                             
+Cat                                                                             
+       666                                                                      
+                                                                                
+
+    PET_ID                                                                      
+----------                                                                      
+PET_NAME                                                                        
+--------------------------------------------------------------------------------
+PET_TYPE                                                                        
+--------------------------------------------------------------------------------
+   CAGE_NO                                                                      
+----------                                                                      
+       423                                                                      
+joe                                                                             
+Cat                                                                             
+       666                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> set lines 100
+SQL> l
+  1* select * from pet
+SQL> /
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       411                                                                                          
+Oyen                                                                                                
+Cat                                                                                                 
+       711                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       412                                                                                          
+Fluffy                                                                                              
+Cat                                                                                                 
+       712                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       413                                                                                          
+Albab                                                                                               
+Cat                                                                                                 
+       713                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       414                                                                                          
+Miko                                                                                                
+Dog                                                                                                 
+       714                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       415                                                                                          
+Kiara                                                                                               
+Dog                                                                                                 
+       715                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       416                                                                                          
+Mok                                                                                                 
+Cat                                                                                                 
+       716                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       417                                                                                          
+Joji                                                                                                
+Dog                                                                                                 
+       717                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       418                                                                                          
+Fredie                                                                                              
+Cat                                                                                                 
+       718                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       419                                                                                          
+Azhar                                                                                               
+Cat                                                                                                 
+       719                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       420                                                                                          
+John                                                                                                
+Dog                                                                                                 
+       720                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       155                                                                                          
+Ju                                                                                                  
+Koala                                                                                               
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       421                                                                                          
+ssss                                                                                                
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       422                                                                                          
+sue                                                                                                 
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       423                                                                                          
+joe                                                                                                 
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+14 rows selected.
+
+SQL> select * from pet3;
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       411                                                                                          
+Oyen                                                                                                
+Cat                                                                                                 
+       711                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       412                                                                                          
+Fluffy                                                                                              
+Cat                                                                                                 
+       712                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       413                                                                                          
+Albab                                                                                               
+Cat                                                                                                 
+       713                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       414                                                                                          
+Miko                                                                                                
+Dog                                                                                                 
+       714                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       415                                                                                          
+Kiara                                                                                               
+Dog                                                                                                 
+       715                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       416                                                                                          
+Mok                                                                                                 
+Cat                                                                                                 
+       716                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       417                                                                                          
+Joji                                                                                                
+Dog                                                                                                 
+       717                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       418                                                                                          
+Fredie                                                                                              
+Cat                                                                                                 
+       718                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       419                                                                                          
+Azhar                                                                                               
+Cat                                                                                                 
+       719                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       420                                                                                          
+John                                                                                                
+Dog                                                                                                 
+       720                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       155                                                                                          
+Ju                                                                                                  
+Koala                                                                                               
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       421                                                                                          
+ssss                                                                                                
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       422                                                                                          
+sue                                                                                                 
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+    PET_ID                                                                                          
+----------                                                                                          
+PET_NAME                                                                                            
+----------------------------------------------------------------------------------------------------
+PET_TYPE                                                                                            
+----------------------------------------------------------------------------------------------------
+   CAGE_NO                                                                                          
+----------                                                                                          
+       423                                                                                          
+joe                                                                                                 
+Cat                                                                                                 
+       666                                                                                          
+                                                                                                    
+
+14 rows selected.
+
+SQL> col pet_name for a20
+SQL> col pet_type for a20
+SQL> select * from pet3;
+
+    PET_ID PET_NAME             PET_TYPE                CAGE_NO                                     
+---------- -------------------- -------------------- ----------                                     
+       411 Oyen                 Cat                         711                                     
+       412 Fluffy               Cat                         712                                     
+       413 Albab                Cat                         713                                     
+       414 Miko                 Dog                         714                                     
+       415 Kiara                Dog                         715                                     
+       416 Mok                  Cat                         716                                     
+       417 Joji                 Dog                         717                                     
+       418 Fredie               Cat                         718                                     
+       419 Azhar                Cat                         719                                     
+       420 John                 Dog                         720                                     
+       155 Ju                   Koala                       666                                     
+
+    PET_ID PET_NAME             PET_TYPE                CAGE_NO                                     
+---------- -------------------- -------------------- ----------                                     
+       421 ssss                 Cat                         666                                     
+       422 sue                  Cat                         666                                     
+       423 joe                  Cat                         666                                     
+
+14 rows selected.
+
+SQL> delete pet3;
+
+14 rows deleted.
+
+SQL> select * from pet3;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from pet3;
+
+    PET_ID PET_NAME             PET_TYPE                CAGE_NO                                     
+---------- -------------------- -------------------- ----------                                     
+       411 Oyen                 Cat                         711                                     
+       412 Fluffy               Cat                         712                                     
+       413 Albab                Cat                         713                                     
+       414 Miko                 Dog                         714                                     
+       415 Kiara                Dog                         715                                     
+       416 Mok                  Cat                         716                                     
+       417 Joji                 Dog                         717                                     
+       418 Fredie               Cat                         718                                     
+       419 Azhar                Cat                         719                                     
+       420 John                 Dog                         720                                     
+       155 Ju                   Koala                       666                                     
+
+    PET_ID PET_NAME             PET_TYPE                CAGE_NO                                     
+---------- -------------------- -------------------- ----------                                     
+       421 ssss                 Cat                         666                                     
+       422 sue                  Cat                         666                                     
+       423 joe                  Cat                         666                                     
+
+14 rows selected.
+
+SQL> truncate table pet3
+  2  /
+
+Table truncated.
+
+SQL> select * from pet3;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from pet3;
+
+no rows selected
+
+SQL> drop table pet2;
+
+Table dropped.
+
+SQL> drop table pet3;
+
+Table dropped.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                                                   
+------------------------------ ------- ----------                                                   
+BILLING                        TABLE                                                                
+CUSTOMER                       TABLE                                                                
+DOCTOR                         TABLE                                                                
+MOVIE                          TABLE                                                                
+OWNER                          TABLE                                                                
+PATIENT                        TABLE                                                                
+PET                            TABLE                                                                
+REGISTRATIONPET                TABLE                                                                
+RENTAL                         TABLE                                                                
+SERVICEPET                     TABLE                                                                
+
+10 rows selected.
+
+SQL> select *
+  2  from doctor
+  3  where salpermon > 10000;
+
+    DOC_ID DOC_NAME  DATEHIRED  SALPERMON AREA                 SUPERVISOR_ID CHGPERAPPT ANNUAL_BONUS
+---------- --------- --------- ---------- -------------------- ------------- ---------- ------------
+       432 Harrison  05-DEC-94      12000 Pediatrics                     100         75         4500
+       504 Cotner    16-JUN-98      11500 Neurology                      289         85         7500
+       876 Robertson 02-MAR-95      10500 Orthopedics                    100         90         8900
+       289 Borque    30-JUN-89      16500 Neurology                      100         95         6500
+       100 Stevenson 30-JUN-79      23500 Director                                                  
+
+SQL> spool off

@@ -1,0 +1,41 @@
+create or replace function patient_disc_sf
+(doc_id IN number)
+return number
+is 
+discount number;
+begin 
+if doc_id = 235 then discount := 0.1;
+elsif doc_id = 504 then discount := 0.25;
+end if;
+return(discount);
+end patient_disc_sf;
+/
+
+refer page 9 in slides
+
+select pt_fname, pt_lname , doc_id ,patient_disc-sf(doc_id) from patient natural join billing;
+
+------------------------
+
+you can call the function in anonymous block
+
+set serveroutput on
+set verify off
+ACCEPT doc_id PROMPT 'Enter the doctor ID: '
+DECLARE
+v_chg doctor.chgperappt%TYPE;
+v_total NUMBER(6,2);
+BEGIN
+SELECT chgperappt INTO v_chg
+FROM doctor 
+WHERE doc_id = &doc_id;
+v_total := v_chg-(v_chg * patient_disc_sf(&doc_id));
+DBMS_OUTPUT.put_line
+('Total payable amount after discount is: RM '||v_total);
+END;
+/
+
+--------------------
+
+function you can use execute but can be used in procedure
+but if it is in use in select statement , you can use 

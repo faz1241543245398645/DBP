@@ -1,0 +1,18 @@
+DECLARE
+    patientID patient.PT_ID%TYPE;
+    patientDOB patient.PTDOB%TYPE;
+    immunizationStatus VARCHAR2(20);
+BEGIN
+    -- Assuming the user inputs the patient ID
+    patientID := &Enter_Patient_ID;
+
+    -- Fetching patient's date of birth based on the provided ID
+    SELECT PTDOB INTO patientDOB FROM patient WHERE PT_ID = patientID;
+
+    -- Checking immunization status using the function
+    immunizationStatus := CheckImmunization(patientDOB);
+
+    DBMS_OUTPUT.PUT_LINE('Enter the patient ID: ' || patientID);
+    DBMS_OUTPUT.PUT_LINE('The status of X-immunization: ' || immunizationStatus);
+END;
+/

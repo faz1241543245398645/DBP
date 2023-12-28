@@ -1,0 +1,60 @@
+SQL> INSERT INTO branch (branch_no, city, street, zipcode)
+  2  VALUES ('B0001', 'Kuala Lumpur', SUBSTR('Menara UOA Bangunan UOB, 51 Jalan Raja Chulan', 1, 25), 50200);
+ 
+SQL> INSERT INTO branch (branch_no, city, street, zipcode)
+  2  VALUES ('B0002', 'Penang', SUBSTR('Gurney Paragon Shopping Mall, Lot 170', 1, 25), 10100);
+
+SQL> INSERT INTO branch (branch_no, city, street, zipcode)
+  2  VALUES ('B0003', 'Johor Bahru', SUBSTR('Menara Komtar, Level 22, Jalan Wong Ah Fook', 1, 25), 80000);
+ 
+SQL> INSERT INTO branch (branch_no, city, street, zipcode)
+  2  VALUES ('B0004', 'Dubai', SUBSTR('Emirates Towers, 51 Boulevard Sheikh Mohammed bin Rashid Al Maktoum, P.O. Box 12243', 1, 25), 0044);
+
+SQL> INSERT INTO branch (branch_no, city, street, zipcode)
+  2  VALUES ('B0005', 'San Francisco', SUBSTR('One Front Street, Suite 500', 1, 25), 94111);
+
+SQL> INSERT INTO staff VALUES ('S0001', 'John', 'Smith', 'Manager', 'M', 50000, 'B0001');
+SQL> INSERT INTO staff VALUES ('S0002', 'Jane', 'Doe', 'Secretary', 'F', 35000, 'B0001');
+SQL> INSERT INTO staff VALUES ('S0003', 'Peter', 'Jones', 'Teacher', 'M', 40000, 'B0002');
+SQL> INSERT INTO student VALUES ('SU001', 'Alice', 'F', 15, 'Kuala Lumpur', 'B0001', 'S0001');
+SQL> INSERT INTO student VALUES ('SU002', 'Bob', 'M', 16, 'Penang', 'B0001', 'S0002');
+SQL> INSERT INTO student VALUES ('SU003', 'Cindy', 'F', 14, 'Johor Bahru', 'B0002', 'S0003');
+SQL> INSERT INTO tournament VALUES ('T0001', 100, 'S0001');
+SQL> INSERT INTO tournament VALUES ('T0002', 150, 'S0002');
+SQL> INSERT INTO tournament VALUES ('T0003', 200, 'S0003');
+
+SQL> select * from branch;
+
+BRANC CITY                 STREET                       ZIPCODE                 
+----- -------------------- ------------------------- ----------                 
+B0001 Kuala Lumpur         Menara UOA Bangunan UOB,       50200                 
+B0002 Penang               Gurney Paragon Shopping M      10100                 
+B0003 Johor Bahru          Menara Komtar, Level 22,       80000                 
+B0004 Dubai                Emirates Towers, 51 Boule         44                 
+B0005 San Francisco        One Front Street, Suite 5      94111                 
+
+SQL> select * from Staff;
+
+STAFF FNAME      LNAME      POSITION   S     SALARY BRANC                       
+----- ---------- ---------- ---------- - ---------- -----                       
+S0001 John       Smith      Manager    M      50000 B0001                       
+S0002 Jane       Doe        Secretary  F      35000 B0001                       
+S0003 Peter      Jones      Teacher    M      40000 B0002                       
+
+SQL> select * from Student;
+
+STUDENTI NAME           S        AGE CITY                 BRANC STAFF           
+-------- -------------- - ---------- -------------------- ----- -----           
+SU001    Alice          F         15 Kuala Lumpur         B0001 S0001           
+SU002    Bob            M         16 Penang               B0001 S0002           
+SU003    Cindy          F         14 Johor Bahru          B0002 S0003           
+
+SQL> select * from tournament;
+
+TOURN  ENTRY_FEE STUDENTI                                                       
+----- ---------- --------                                                       
+T0001        100 S0001                                                          
+T0002        150 S0002                                                          
+T0003        200 S0003                                                          
+
+SQL> spool off

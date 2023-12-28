@@ -1,0 +1,122 @@
+l lines 100
+set pages 30
+select se;
+
+select * from doctor where datehired > '31-DEC-1999'
+
+
+date and varchar need quote
+
+
+select * from doctor where salpermon >= 10000
+sho feed
+set feed 1
+and do it again , notice the diff
+
+
+Comparisons Conditions
+---------------------------------
+not equal have threee symbol
+others the same and one symbol only
+
+where salpermon between 10000 and 12000;
+where salpermon not between 10000 and 12000;
+between not recommend for string only dates and number
+
+where salpermon in (10000,12000);
+where salpermon not in (10000,12000);
+
+find total rows : select count(*) from doctor;
+
+
+3 order by dotor;
+
+where annual_bonus is null;
+where annual_bonus is not null;
+
+
+wildcard start with strng
+where doc_name like 'S%';
+
+wildcard check 3rd letter must be r
+where doc_name like '__r%';
+
+like can be used for string and date
+-------------------------------------------
+BUILT-IN FUNCTONS
+select doc_name , upper(doc_name), lower(doc_name), initcap(doc-name) from doctor
+
+upper = upper case
+initial capital = tiile case
+lower = lowe case
+
+upper, lower and initial will 
+
+
+select systdate from dual
+select sysdate, to_char(sysdate,'dd Month yy hh:mi:ss am') from dual;
+
+
+select doc_name , substr(doc_name,1,3),substr(doc_name,1,5) from doctor
+from one first position get 3 characres
+from first position get 5 charcters
+
+substring = sub set of the string 
+instring = 
+
+select doc_name , instr(doc_name,'a'), instr(doc_name,'s'), from doctor
+
+* finds the position of a 
+* finds the positin of s
+* return in case sensitive, number of S and s not counted together
+
+
+
+select dpc_name, length(doc_name) from doctor
+
+select concat(concat(pt_fname,' '),pt_lname)
+
+* concat firstname with space and then concat it last name
+
+
+
+ORDER BY CLAUSE
+
+select * from dcotor
+order by area asc, salpermon desc; 
+* select on column ascending
+* default is ascending order
+
+select doc_name,area,salpermon salary from doctor order by 1;
+* can order by first column, second , third etc
+
+
+
+select ltrim(doc_name,'S') from doctor;
+* trim from the left
+select rtrim(doc_name,'son') from doctor;
+* trim from the right
+
+select rpad(doc_name,15,'son')
+* padding repeat 15 times
+
+select lpad(doc_name,15,'S')
+* pad 'S' 15 times
+
+
+col left for a20 
+* hiw to short the column
+
+select doc_name ,replace(doc_name,'son','shit') from doctor;
+Buit-In Functions
+1. single-row functions
+2. Group Functions 
+
+
+selecy sysdate, systimestamp from dual
+* try compare each of it
+
+
+Round
+
+Trunc

@@ -1,0 +1,161 @@
+SQL> alter table t1
+  2  add dob date;
+
+Table altered.
+
+SQL> alter table t1
+  2  add constraint t1_id_ck check (id between 1 and 999);
+
+Table altered.
+
+SQL> select * from t1;
+
+        ID NAME                 DOB                                                                 
+---------- -------------------- ---------                                                           
+         1 aaaa                                                                                     
+         2 aaaa                                                                                     
+         3 aaaa                                                                                     
+
+SQL> insert into t1
+  2  values (1000,'aaaa',sysdate);
+insert into t1
+*
+ERROR at line 1:
+ORA-02290: check constraint (USER1.T1_ID_CK) violated 
+
+
+SQL> insert into t1
+  2  values (999,'aaaa',sysdate);
+
+1 row created.
+
+SQL> select constraint_name, search_condition
+  2  from user_constraints
+  3  where table_name = 'T1';
+
+CONSTRAINT_NAME                                                                                     
+------------------------------                                                                      
+SEARCH_CONDITION                                                                                    
+--------------------------------------------------------------------------------                    
+T1_ID_PK                                                                                            
+                                                                                                    
+                                                                                                    
+T1_ID_CK                                                                                            
+id between 1 and 999                                                                                
+                                                                                                    
+
+SQL> alter table t1
+  2  modify name constraint t1_name_nn not null;
+
+Table altered.
+
+SQL> select constraint_name, search_condition, status
+  2  from user_constraints
+  3  where table_name = 'T1';
+
+CONSTRAINT_NAME                                                                                     
+------------------------------                                                                      
+SEARCH_CONDITION                                                                 STATUS             
+-------------------------------------------------------------------------------- --------           
+T1_ID_PK                                                                                            
+                                                                                 ENABLED            
+                                                                                                    
+T1_ID_CK                                                                                            
+id between 1 and 999                                                             ENABLED            
+                                                                                                    
+T1_NAME_NN                                                                                          
+"NAME" IS NOT NULL                                                               ENABLED            
+                                                                                                    
+
+SQL> alter table t1
+  2  add yesno varchar2(3) constraint t1_yesno_ck check yesno in ('Y','N');
+add yesno varchar2(3) constraint t1_yesno_ck check yesno in ('Y','N')
+                                                   *
+ERROR at line 2:
+ORA-00906: missing left parenthesis 
+
+
+SQL> alter table t1
+  2  add yesno varchar2(3) constraint t1_yesno_ck check (yesno in ('Y','N'));
+
+Table altered.
+
+SQL> select * from t1;
+
+        ID NAME                 DOB       YES                                                       
+---------- -------------------- --------- ---                                                       
+         1 aaaa                                                                                     
+         2 aaaa                                                                                     
+         3 aaaa                                                                                     
+       999 aaaa                 23-OCT-23                                                           
+
+SQL> insert into t1
+  2  values (4,'aaaa',sysdate,'Z');
+insert into t1
+*
+ERROR at line 1:
+ORA-02290: check constraint (USER1.T1_YESNO_CK) violated 
+
+
+SQL> insert into t1
+  2  values (4,'aaaa',sysdate,'Y');
+
+1 row created.
+
+SQL> select * from t1;
+
+        ID NAME                 DOB       YES                                                       
+---------- -------------------- --------- ---                                                       
+         1 aaaa                                                                                     
+         2 aaaa                                                                                     
+         3 aaaa                                                                                     
+       999 aaaa                 23-OCT-23                                                           
+         4 aaaa                 23-OCT-23 Y                                                         
+
+SQL> desc t1
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER
+ NAME                                                  NOT NULL VARCHAR2(20)
+ DOB                                                            DATE
+ YESNO                                                          VARCHAR2(3)
+
+SQL> alter table t1
+  2  modify dob constraint t1_dob_nn not null;
+modify dob constraint t1_dob_nn not null
+                      *
+ERROR at line 2:
+ORA-02296: cannot enable (USER1.T1_DOB_NN) - null values found 
+
+
+SQL> update t1
+  2  set dob = sysdate;
+
+5 rows updated.
+
+SQL> select * from t1;
+
+        ID NAME                 DOB       YES                                                       
+---------- -------------------- --------- ---                                                       
+         1 aaaa                 23-OCT-23                                                           
+         2 aaaa                 23-OCT-23                                                           
+         3 aaaa                 23-OCT-23                                                           
+       999 aaaa                 23-OCT-23                                                           
+         4 aaaa                 23-OCT-23 Y                                                         
+
+SQL> alter table t1
+  2  modify dob constraint t1_dob_nn not null;
+
+Table altered.
+
+SQL> create table t2
+  2  (id number not null);
+
+Table created.
+
+SQL> create table t3
+  2  (id number constraint t3_id_nn not null);
+
+Table created.
+
+SQL> spool off

@@ -1,0 +1,99 @@
+--EQUALITY JOIN
+--#1 NATURAL JOIN PK & FK same column name; cannot have column qualifier
+select doc_id, doc_name, pt_lname
+from doctor natural join patient;
+
+select doc_id, doc_name, pt_lname, pt_ins
+from doctor natural join patient natural join billing
+
+--#2 JOIN..USING PK & FK same column name; cannot have column qualifier
+select doc_id, doc_name, pt_lname
+from doctor join patient
+using (doc_id);
+
+select doc_id, doc_name, pt_lname, pt_ins
+from doctor join patient
+using (doc_id)
+join billing
+using (pt_id)
+
+
+--#3 JOIN..ON PK & FK can have different column name
+select doctor.doc_id, doc_name, pt_lname
+from doctor join patient
+on doctor.doc_id = patient.doc_id;
+
+select d.doc_id, doc_name, pt_lname, pt_ins
+from doctor d join patient p
+on d.doc_id = p.doc_id
+join billing b
+on p.pt_id = b.pt_id
+
+--#4 WHERE PK & FK can have different column name
+select doctor.doc_id, doc_name, pt_lname
+from doctor ,patient
+where doctor.doc_id = patient.doc_id;
+
+select doctor.doc_id, doc_name, pt_lname, pt_ins
+from doctor ,patient, billing
+where doctor.doc_id = patient.doc_id
+and patient.pt_id = billing.pt_id;
+
+--NON-EQUI JOIN
+select ename, sal, grade
+from emp, salgrade
+where sal between losal and hisal
+order by 3;
+
+--SELF JOIN (Tech #3 & #4)
+select staff.ename staffname, boss.ename bossname
+from emp staff INNER JOIN  emp boss
+ON staff.mgr = boss.empno;
+
+--staff that have no boss
+select staff.ename staffname, boss.ename bossname
+from emp staff  LEFT JOIN  emp boss
+ON staff.mgr = boss.empno;
+
+--staff who does not have subordinates
+select staff.ename staffname, boss.ename bossname
+from emp staff RIGHT JOIN  emp boss
+ON staff.mgr = boss.empno;
+
+select staff.ename staffname, boss.ename bossname
+from emp staff, emp boss
+where staff.mgr = boss.empno;
+
+--OUTER JOIN (LEFT/RIGHT/FULL OUTER JOIN )
+--RIGHT OUTER JOIN
+select ename, dept.deptno, dname
+from emp right join dept
+on emp.deptno = dept.deptno
+
+--LEFT OUTER JOIN
+select empno, ename, dept.deptno, dname
+from emp left outer join dept
+on emp.deptno = dept.deptno
+
+--position of tables matters
+select empno, ename, dept.deptno, dname
+from dept  left join emp
+on emp.deptno = dept.deptno
+
+--full join
+select empno, ename, dept.deptno, dname
+from emp full outer join dept
+on emp.deptno = dept.deptno
+
+--left outer with where join. xtra dept
+select empno, ename, dept.deptno, dname
+from dept, emp
+where emp.deptno (+) = dept.deptno
+
+--xtra emp
+select empno, ename, dept.deptno, dname
+from dept, emp
+where emp.deptno  = dept.deptno(+)
+
+
+

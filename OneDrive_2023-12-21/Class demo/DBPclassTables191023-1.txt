@@ -1,0 +1,40 @@
+create table dept
+(deptno number primary key,
+deptname varchar2(20));
+
+--columnlevel
+create table dept2
+(deptno number constraint dept2_deptno_pk primary key,
+deptname varchar2(20));
+
+--tablelevel*
+create table dept3
+(deptno number,
+deptname varchar2(20),
+constraint dept3_deptno_pk primary key(deptno, deptname));
+
+
+select constraint_name, constraint_type, table_name
+from user_constraints
+where table_name like 'DEPT%';
+
+--column level
+create table emp
+(empno number constraint emp_empno_pk primary key,
+empname varchar2(20),
+deptno number constraint emp_deptno_fk references dept(deptno));
+
+--table level
+create table emp2
+(empno number constraint emp2_empno_pk primary key,
+empname varchar2(20),
+deptno number,
+constraint emp2_deptno_fk foreign key (deptno) references dept(deptno));
+
+create table emp3
+(empno number constraint emp3_empno_pk primary key,
+empname varchar2(20) not null,
+deptno number,
+constraint emp3_deptno_fk foreign key (deptno) references dept(deptno));
+
+

@@ -1,0 +1,19 @@
+DECLARE
+  v_name doctor.doc_name%type;
+  v_sal  doctor.salpermon%type;
+
+
+BEGIN
+  -- select can only return only 1 value
+  select doc_name, salpermon
+  into   v_name, v_sal
+  from   doctor
+  where  doc_id = &docid;
+
+  dbms_output.put_line('The doctor '||v_name||' earns '||
+                        to_char(v_sal,'$99,999.99'));
+
+EXCEPTION
+  when too_many_rows then dbms_output.put_line('too many ');
+END;
+/

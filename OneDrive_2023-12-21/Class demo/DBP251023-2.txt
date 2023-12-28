@@ -1,0 +1,857 @@
+SQL> select area from doctor;
+
+AREA                                                                                                
+--------------------                                                                                
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Neurology                                                                                           
+Family Practice                                                                                     
+Neurology                                                                                           
+Orthopedics                                                                                         
+Orthopedics                                                                                         
+Rehab                                                                                               
+Rehab                                                                                               
+Neurology                                                                                           
+
+AREA                                                                                                
+--------------------                                                                                
+Director                                                                                            
+                                                                                                    
+
+13 rows selected.
+
+SQL> sho user
+USER is "USER1"
+SQL> select area from doctor;
+
+AREA                                                                                                
+--------------------                                                                                
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Neurology                                                                                           
+Family Practice                                                                                     
+Neurology                                                                                           
+Orthopedics                                                                                         
+Orthopedics                                                                                         
+Rehab                                                                                               
+Rehab                                                                                               
+Neurology                                                                                           
+
+AREA                                                                                                
+--------------------                                                                                
+Director                                                                                            
+
+12 rows selected.
+
+SQL> set pages 30
+SQL> /
+
+AREA                                                                                                
+--------------------                                                                                
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Pediatrics                                                                                          
+Neurology                                                                                           
+Family Practice                                                                                     
+Neurology                                                                                           
+Orthopedics                                                                                         
+Orthopedics                                                                                         
+Rehab                                                                                               
+Rehab                                                                                               
+Neurology                                                                                           
+Director                                                                                            
+
+12 rows selected.
+
+SQL> select distinct area from doctor;
+
+AREA                                                                                                
+--------------------                                                                                
+Rehab                                                                                               
+Neurology                                                                                           
+Family Practice                                                                                     
+Pediatrics                                                                                          
+Orthopedics                                                                                         
+Director                                                                                            
+
+6 rows selected.
+
+SQL> select distinct doc_id, area from doctor;
+
+    DOC_ID AREA                                                                                     
+---------- --------------------                                                                     
+       432 Pediatrics                                                                               
+       509 Pediatrics                                                                               
+       389 Pediatrics                                                                               
+       504 Neurology                                                                                
+       235 Family Practice                                                                          
+       356 Neurology                                                                                
+       558 Orthopedics                                                                              
+       876 Orthopedics                                                                              
+       889 Rehab                                                                                    
+       239 Rehab                                                                                    
+       289 Neurology                                                                                
+       100 Director                                                                                 
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6
+  2  from doctor;
+
+DOC_NAME   SALPERMON SALPERMON*6                                                                    
+--------- ---------- -----------                                                                    
+Harrison       12000       72000                                                                    
+Vester          8100       48600                                                                    
+Lewis          10000       60000                                                                    
+Cotner         11500       69000                                                                    
+Smith           4550       27300                                                                    
+James           7950       47700                                                                    
+James           9800       58800                                                                    
+Robertson      10500       63000                                                                    
+Thompson        6500       39000                                                                    
+Pronger         3500       21000                                                                    
+Borque         16500       99000                                                                    
+Stevenson      23500      141000                                                                    
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6 bonus
+  2  from doctor;
+
+DOC_NAME   SALPERMON      BONUS                                                                     
+--------- ---------- ----------                                                                     
+Harrison       12000      72000                                                                     
+Vester          8100      48600                                                                     
+Lewis          10000      60000                                                                     
+Cotner         11500      69000                                                                     
+Smith           4550      27300                                                                     
+James           7950      47700                                                                     
+James           9800      58800                                                                     
+Robertson      10500      63000                                                                     
+Thompson        6500      39000                                                                     
+Pronger         3500      21000                                                                     
+Borque         16500      99000                                                                     
+Stevenson      23500     141000                                                                     
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6 "Bonus"
+  2  from doctor;
+
+DOC_NAME   SALPERMON      Bonus                                                                     
+--------- ---------- ----------                                                                     
+Harrison       12000      72000                                                                     
+Vester          8100      48600                                                                     
+Lewis          10000      60000                                                                     
+Cotner         11500      69000                                                                     
+Smith           4550      27300                                                                     
+James           7950      47700                                                                     
+James           9800      58800                                                                     
+Robertson      10500      63000                                                                     
+Thompson        6500      39000                                                                     
+Pronger         3500      21000                                                                     
+Borque         16500      99000                                                                     
+Stevenson      23500     141000                                                                     
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new bonus
+  2  from doctor;
+select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new bonus
+                                                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new_bonus
+  2  from doctor;
+
+DOC_NAME   SALPERMON      BONUS  NEW_BONUS                                                          
+--------- ---------- ---------- ----------                                                          
+Harrison       12000      72000     144000                                                          
+Vester          8100      48600      97200                                                          
+Lewis          10000      60000     120000                                                          
+Cotner         11500      69000     138000                                                          
+Smith           4550      27300      54600                                                          
+James           7950      47700      95400                                                          
+James           9800      58800     117600                                                          
+Robertson      10500      63000     126000                                                          
+Thompson        6500      39000      78000                                                          
+Pronger         3500      21000      42000                                                          
+Borque         16500      99000     198000                                                          
+Stevenson      23500     141000     282000                                                          
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6 bonus, salpermon*12 "new bonus"
+  2  from doctor;
+
+DOC_NAME   SALPERMON      BONUS  new bonus                                                          
+--------- ---------- ---------- ----------                                                          
+Harrison       12000      72000     144000                                                          
+Vester          8100      48600      97200                                                          
+Lewis          10000      60000     120000                                                          
+Cotner         11500      69000     138000                                                          
+Smith           4550      27300      54600                                                          
+James           7950      47700      95400                                                          
+James           9800      58800     117600                                                          
+Robertson      10500      63000     126000                                                          
+Thompson        6500      39000      78000                                                          
+Pronger         3500      21000      42000                                                          
+Borque         16500      99000     198000                                                          
+Stevenson      23500     141000     282000                                                          
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new_bonus, salpermon*3 as 3mthbonus
+  2  from doctor;
+select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new_bonus, salpermon*3 as 3mthbonus
+                                                                                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> l
+  1  select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new_bonus, salpermon*3 as 3mthbonus
+  2* from doctor
+SQL> /
+select doc_name, salpermon, salpermon*6 bonus, salpermon*12 new_bonus, salpermon*3 as 3mthbonus
+                                                                                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus, salpermon*3 as 3mthbonus
+  2  from doctor;
+select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus, salpermon*3 as 3mthbonus
+                                        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus, salpermon*3 as 3mthbonus
+  2* from doctor
+  3  /
+select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus, salpermon*3 as 3mthbonus
+                                        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus
+  2* from doctor
+SQL> /
+select doc_name, salpermon, salpermon*6 6mthbonus, salpermon*12 12mth_bonus
+                                        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select doc_name, salpermon, salpermon*6 6mthbonus
+  2* from doctor
+SQL> /
+select doc_name, salpermon, salpermon*6 6mthbonus
+                                        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select doc_name, salpermon, salpermon*3 3mthbonus
+  2  from doctor;
+select doc_name, salpermon, salpermon*3 3mthbonus
+                                        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select doc_name, salpermon, salpermon*3 threemthbonus, salpermon*6 assixmthbonus
+  2  from doctor;
+
+DOC_NAME   SALPERMON THREEMTHBONUS ASSIXMTHBONUS                                                    
+--------- ---------- ------------- -------------                                                    
+Harrison       12000         36000         72000                                                    
+Vester          8100         24300         48600                                                    
+Lewis          10000         30000         60000                                                    
+Cotner         11500         34500         69000                                                    
+Smith           4550         13650         27300                                                    
+James           7950         23850         47700                                                    
+James           9800         29400         58800                                                    
+Robertson      10500         31500         63000                                                    
+Thompson        6500         19500         39000                                                    
+Pronger         3500         10500         21000                                                    
+Borque         16500         49500         99000                                                    
+Stevenson      23500         70500        141000                                                    
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*3 threemthbonus, salpermon*6 as sixmthbonus
+  2  from doctor;
+
+DOC_NAME   SALPERMON THREEMTHBONUS SIXMTHBONUS                                                      
+--------- ---------- ------------- -----------                                                      
+Harrison       12000         36000       72000                                                      
+Vester          8100         24300       48600                                                      
+Lewis          10000         30000       60000                                                      
+Cotner         11500         34500       69000                                                      
+Smith           4550         13650       27300                                                      
+James           7950         23850       47700                                                      
+James           9800         29400       58800                                                      
+Robertson      10500         31500       63000                                                      
+Thompson        6500         19500       39000                                                      
+Pronger         3500         10500       21000                                                      
+Borque         16500         49500       99000                                                      
+Stevenson      23500         70500      141000                                                      
+
+12 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select doc_name, 
+  2         salpermon, 
+  3         salpermon*3 as threemthbonus, 
+  4         salpermon*6 as sixmthbonus
+  5* from doctor
+SQL> /
+
+DOC_NAME   SALPERMON THREEMTHBONUS SIXMTHBONUS                                                      
+--------- ---------- ------------- -----------                                                      
+Harrison       12000         36000       72000                                                      
+Vester          8100         24300       48600                                                      
+Lewis          10000         30000       60000                                                      
+Cotner         11500         34500       69000                                                      
+Smith           4550         13650       27300                                                      
+James           7950         23850       47700                                                      
+James           9800         29400       58800                                                      
+Robertson      10500         31500       63000                                                      
+Thompson        6500         19500       39000                                                      
+Pronger         3500         10500       21000                                                      
+Borque         16500         49500       99000                                                      
+Stevenson      23500         70500      141000                                                      
+
+12 rows selected.
+
+SQL> select doc_name, salpermon, salpermon*3, salpermon+3, salpermon-3
+  2  from doctor;
+
+DOC_NAME   SALPERMON SALPERMON*3 SALPERMON+3 SALPERMON-3                                            
+--------- ---------- ----------- ----------- -----------                                            
+Harrison       12000       36000       12003       11997                                            
+Vester          8100       24300        8103        8097                                            
+Lewis          10000       30000       10003        9997                                            
+Cotner         11500       34500       11503       11497                                            
+Smith           4550       13650        4553        4547                                            
+James           7950       23850        7953        7947                                            
+James           9800       29400        9803        9797                                            
+Robertson      10500       31500       10503       10497                                            
+Thompson        6500       19500        6503        6497                                            
+Pronger         3500       10500        3503        3497                                            
+Borque         16500       49500       16503       16497                                            
+Stevenson      23500       70500       23503       23497                                            
+
+12 rows selected.
+
+SQL> select doc_name, hiredate, hiredate+3, hiredate-3
+  2  from doctor;
+select doc_name, hiredate, hiredate+3, hiredate-3
+                                       *
+ERROR at line 1:
+ORA-00904: "HIREDATE": invalid identifier 
+
+
+SQL> desc doctor
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DOC_ID                                                NOT NULL NUMBER(3)
+ DOC_NAME                                                       VARCHAR2(9)
+ DATEHIRED                                                      DATE
+ SALPERMON                                                      NUMBER(12)
+ AREA                                                           VARCHAR2(20)
+ SUPERVISOR_ID                                                  NUMBER(3)
+ CHGPERAPPT                                                     NUMBER(3)
+ ANNUAL_BONUS                                                   NUMBER(5)
+
+SQL> select doc_name, datehired, datehired+3, datehired-3
+  2  from doctor;
+
+DOC_NAME  DATEHIRED DATEHIRED DATEHIRED                                                             
+--------- --------- --------- ---------                                                             
+Harrison  05-DEC-94 08-DEC-94 02-DEC-94                                                             
+Vester    09-JAN-00 12-JAN-00 06-JAN-00                                                             
+Lewis     21-JAN-96 24-JAN-96 18-JAN-96                                                             
+Cotner    16-JUN-98 19-JUN-98 13-JUN-98                                                             
+Smith     22-JUN-98 25-JUN-98 19-JUN-98                                                             
+James     01-AUG-98 04-AUG-98 29-JUL-98                                                             
+James     02-MAY-95 05-MAY-95 29-APR-95                                                             
+Robertson 02-MAR-95 05-MAR-95 27-FEB-95                                                             
+Thompson  18-MAR-97 21-MAR-97 15-MAR-97                                                             
+Pronger   18-DEC-99 21-DEC-99 15-DEC-99                                                             
+Borque    30-JUN-89 03-JUL-89 27-JUN-89                                                             
+Stevenson 30-JUN-79 03-JUL-79 27-JUN-79                                                             
+
+12 rows selected.
+
+SQL> select doc_name, hiredate, hiredate+3, hiredate-3, hiredate*3
+  2  from doctor;
+select doc_name, hiredate, hiredate+3, hiredate-3, hiredate*3
+                                                   *
+ERROR at line 1:
+ORA-00904: "HIREDATE": invalid identifier 
+
+
+SQL> select doc_name, datehired, datehired+3, datehired-3, datehired*3
+  2  from doctor;
+select doc_name, datehired, datehired+3, datehired-3, datehired*3
+                                                      *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> select doc_name, datehired, datehired+3, datehired-3
+  2  from doctor;
+
+DOC_NAME  DATEHIRED DATEHIRED DATEHIRED                                                             
+--------- --------- --------- ---------                                                             
+Harrison  05-DEC-94 08-DEC-94 02-DEC-94                                                             
+Vester    09-JAN-00 12-JAN-00 06-JAN-00                                                             
+Lewis     21-JAN-96 24-JAN-96 18-JAN-96                                                             
+Cotner    16-JUN-98 19-JUN-98 13-JUN-98                                                             
+Smith     22-JUN-98 25-JUN-98 19-JUN-98                                                             
+James     01-AUG-98 04-AUG-98 29-JUL-98                                                             
+James     02-MAY-95 05-MAY-95 29-APR-95                                                             
+Robertson 02-MAR-95 05-MAR-95 27-FEB-95                                                             
+Thompson  18-MAR-97 21-MAR-97 15-MAR-97                                                             
+Pronger   18-DEC-99 21-DEC-99 15-DEC-99                                                             
+Borque    30-JUN-89 03-JUL-89 27-JUN-89                                                             
+Stevenson 30-JUN-79 03-JUL-79 27-JUN-79                                                             
+
+12 rows selected.
+
+SQL> col datehired+3 for a20
+SQL> select doc_name, datehired, datehired+3, datehired-3
+  2  from doctor;
+
+DOC_NAME  DATEHIRED DATEHIRED+3          DATEHIRED                                                  
+--------- --------- -------------------- ---------                                                  
+Harrison  05-DEC-94 08-DEC-94            02-DEC-94                                                  
+Vester    09-JAN-00 12-JAN-00            06-JAN-00                                                  
+Lewis     21-JAN-96 24-JAN-96            18-JAN-96                                                  
+Cotner    16-JUN-98 19-JUN-98            13-JUN-98                                                  
+Smith     22-JUN-98 25-JUN-98            19-JUN-98                                                  
+James     01-AUG-98 04-AUG-98            29-JUL-98                                                  
+James     02-MAY-95 05-MAY-95            29-APR-95                                                  
+Robertson 02-MAR-95 05-MAR-95            27-FEB-95                                                  
+Thompson  18-MAR-97 21-MAR-97            15-MAR-97                                                  
+Pronger   18-DEC-99 21-DEC-99            15-DEC-99                                                  
+Borque    30-JUN-89 03-JUL-89            27-JUN-89                                                  
+Stevenson 30-JUN-79 03-JUL-79            27-JUN-79                                                  
+
+12 rows selected.
+
+SQL> select doc_name, datehired, datehired+3 add3days, datehired-3 minus3days
+  2  from doctor;
+
+DOC_NAME  DATEHIRED ADD3DAYS  MINUS3DAY                                                             
+--------- --------- --------- ---------                                                             
+Harrison  05-DEC-94 08-DEC-94 02-DEC-94                                                             
+Vester    09-JAN-00 12-JAN-00 06-JAN-00                                                             
+Lewis     21-JAN-96 24-JAN-96 18-JAN-96                                                             
+Cotner    16-JUN-98 19-JUN-98 13-JUN-98                                                             
+Smith     22-JUN-98 25-JUN-98 19-JUN-98                                                             
+James     01-AUG-98 04-AUG-98 29-JUL-98                                                             
+James     02-MAY-95 05-MAY-95 29-APR-95                                                             
+Robertson 02-MAR-95 05-MAR-95 27-FEB-95                                                             
+Thompson  18-MAR-97 21-MAR-97 15-MAR-97                                                             
+Pronger   18-DEC-99 21-DEC-99 15-DEC-99                                                             
+Borque    30-JUN-89 03-JUL-89 27-JUN-89                                                             
+Stevenson 30-JUN-79 03-JUL-79 27-JUN-79                                                             
+
+12 rows selected.
+
+SQL> select salpermon*3+4-5/2 from doctor;
+
+SALPERMON*3+4-5/2                                                                                   
+-----------------                                                                                   
+          36001.5                                                                                   
+          24301.5                                                                                   
+          30001.5                                                                                   
+          34501.5                                                                                   
+          13651.5                                                                                   
+          23851.5                                                                                   
+          29401.5                                                                                   
+          31501.5                                                                                   
+          19501.5                                                                                   
+          10501.5                                                                                   
+          49501.5                                                                                   
+          70501.5                                                                                   
+
+12 rows selected.
+
+SQL> select salpermon, salpermon*3+4-5/2 from doctor;
+
+ SALPERMON SALPERMON*3+4-5/2                                                                        
+---------- -----------------                                                                        
+     12000           36001.5                                                                        
+      8100           24301.5                                                                        
+     10000           30001.5                                                                        
+     11500           34501.5                                                                        
+      4550           13651.5                                                                        
+      7950           23851.5                                                                        
+      9800           29401.5                                                                        
+     10500           31501.5                                                                        
+      6500           19501.5                                                                        
+      3500           10501.5                                                                        
+     16500           49501.5                                                                        
+     23500           70501.5                                                                        
+
+12 rows selected.
+
+SQL> select 12000*3 from dual;
+
+   12000*3                                                                                          
+----------                                                                                          
+     36000                                                                                          
+
+SQL> select salpermon, salpermon*(3+4-5/2) from doctor;
+
+ SALPERMON SALPERMON*(3+4-5/2)                                                                      
+---------- -------------------                                                                      
+     12000               54000                                                                      
+      8100               36450                                                                      
+     10000               45000                                                                      
+     11500               51750                                                                      
+      4550               20475                                                                      
+      7950               35775                                                                      
+      9800               44100                                                                      
+     10500               47250                                                                      
+      6500               29250                                                                      
+      3500               15750                                                                      
+     16500               74250                                                                      
+     23500              105750                                                                      
+
+12 rows selected.
+
+SQL> SELECT doc_name, annual_bonus,  10*annual_bonus+500
+  2  FROM doctor;
+
+DOC_NAME  ANNUAL_BONUS 10*ANNUAL_BONUS+500                                                          
+--------- ------------ -------------------                                                          
+Harrison          4500               45500                                                          
+Vester                                                                                              
+Lewis             2250               23000                                                          
+Cotner            7500               75500                                                          
+Smith             2250               23000                                                          
+James             6500               65500                                                          
+James             7700               77500                                                          
+Robertson         8900               89500                                                          
+Thompson          3200               32500                                                          
+Pronger                                                                                             
+Borque            6500               65500                                                          
+Stevenson                                                                                           
+
+12 rows selected.
+
+SQL> SELECT doc_name, annual_bonus, 10*(annual_bonus+500)
+  2  FROM doctor;
+
+DOC_NAME  ANNUAL_BONUS 10*(ANNUAL_BONUS+500)                                                        
+--------- ------------ ---------------------                                                        
+Harrison          4500                 50000                                                        
+Vester                                                                                              
+Lewis             2250                 27500                                                        
+Cotner            7500                 80000                                                        
+Smith             2250                 27500                                                        
+James             6500                 70000                                                        
+James             7700                 82000                                                        
+Robertson         8900                 94000                                                        
+Thompson          3200                 37000                                                        
+Pronger                                                                                             
+Borque            6500                 70000                                                        
+Stevenson                                                                                           
+
+12 rows selected.
+
+SQL> SELECT doc_name, nvl(annual_bonus,0), 10*(annual_bonus+500)
+  2  FROM doctor;
+
+DOC_NAME  NVL(ANNUAL_BONUS,0) 10*(ANNUAL_BONUS+500)                                                 
+--------- ------------------- ---------------------                                                 
+Harrison                 4500                 50000                                                 
+Vester                      0                                                                       
+Lewis                    2250                 27500                                                 
+Cotner                   7500                 80000                                                 
+Smith                    2250                 27500                                                 
+James                    6500                 70000                                                 
+James                    7700                 82000                                                 
+Robertson                8900                 94000                                                 
+Thompson                 3200                 37000                                                 
+Pronger                     0                                                                       
+Borque                   6500                 70000                                                 
+Stevenson                   0                                                                       
+
+12 rows selected.
+
+SQL> SELECT doc_name, nvl(annual_bonus,0), 10*(nvl(annual_bonus,0)+500)
+  2  FROM doctor;
+
+DOC_NAME  NVL(ANNUAL_BONUS,0) 10*(NVL(ANNUAL_BONUS,0)+500)                                          
+--------- ------------------- ----------------------------                                          
+Harrison                 4500                        50000                                          
+Vester                      0                         5000                                          
+Lewis                    2250                        27500                                          
+Cotner                   7500                        80000                                          
+Smith                    2250                        27500                                          
+James                    6500                        70000                                          
+James                    7700                        82000                                          
+Robertson                8900                        94000                                          
+Thompson                 3200                        37000                                          
+Pronger                     0                         5000                                          
+Borque                   6500                        70000                                          
+Stevenson                   0                         5000                                          
+
+12 rows selected.
+
+SQL> select pt_fname||pt_lname from patient;
+
+PT_FNAME||PT_LNAME                                                                                  
+------------------------------                                                                      
+PaulJames                                                                                           
+BrianAnderson                                                                                       
+ScottJames                                                                                          
+JasonSmith                                                                                          
+SusanPorter                                                                                         
+DebbieSaillez                                                                                       
+AnthonyRogers                                                                                       
+StephanieWalters                                                                                    
+LynnWestra                                                                                          
+JenniferPoole                                                                                       
+RyanBaily                                                                                           
+LewisCrow                                                                                           
+JohnCochran                                                                                         
+BeckyRoach                                                                                          
+JohnJackson                                                                                         
+PaulKowalczyk                                                                                       
+LindaDavis                                                                                          
+J.C.Jones                                                                                           
+ChasityWright                                                                                       
+KeithVanderchuck                                                                                    
+AllenMcginnis                                                                                       
+JoeSakic                                                                                            
+
+22 rows selected.
+
+SQL> select pt_fname||' '||pt_lname from patient;
+
+PT_FNAME||''||PT_LNAME                                                                              
+-------------------------------                                                                     
+Paul James                                                                                          
+Brian Anderson                                                                                      
+Scott James                                                                                         
+Jason Smith                                                                                         
+Susan Porter                                                                                        
+Debbie Saillez                                                                                      
+Anthony Rogers                                                                                      
+Stephanie Walters                                                                                   
+Lynn Westra                                                                                         
+Jennifer Poole                                                                                      
+Ryan Baily                                                                                          
+Lewis Crow                                                                                          
+John Cochran                                                                                        
+Becky Roach                                                                                         
+John Jackson                                                                                        
+Paul Kowalczyk                                                                                      
+Linda Davis                                                                                         
+J.C. Jones                                                                                          
+Chasity Wright                                                                                      
+Keith Vanderchuck                                                                                   
+Allen Mcginnis                                                                                      
+Joe Sakic                                                                                           
+
+22 rows selected.
+
+SQL> select pt_fname||'. the last name is:'||pt_lname from patient;
+
+PT_FNAME||'.THELASTNAMEIS:'||PT_LNAME                                                               
+-------------------------------------------------                                                   
+Paul. the last name is:James                                                                        
+Brian. the last name is:Anderson                                                                    
+Scott. the last name is:James                                                                       
+Jason. the last name is:Smith                                                                       
+Susan. the last name is:Porter                                                                      
+Debbie. the last name is:Saillez                                                                    
+Anthony. the last name is:Rogers                                                                    
+Stephanie. the last name is:Walters                                                                 
+Lynn. the last name is:Westra                                                                       
+Jennifer. the last name is:Poole                                                                    
+Ryan. the last name is:Baily                                                                        
+Lewis. the last name is:Crow                                                                        
+John. the last name is:Cochran                                                                      
+Becky. the last name is:Roach                                                                       
+John. the last name is:Jackson                                                                      
+Paul. the last name is:Kowalczyk                                                                    
+Linda. the last name is:Davis                                                                       
+J.C.. the last name is:Jones                                                                        
+Chasity. the last name is:Wright                                                                    
+Keith. the last name is:Vanderchuck                                                                 
+Allen. the last name is:Mcginnis                                                                    
+Joe. the last name is:Sakic                                                                         
+
+22 rows selected.
+
+SQL> select pt_fname||'the last name is:'||pt_lname from patient;
+
+PT_FNAME||'THELASTNAMEIS:'||PT_LNAME                                                                
+-----------------------------------------------                                                     
+Paulthe last name is:James                                                                          
+Brianthe last name is:Anderson                                                                      
+Scottthe last name is:James                                                                         
+Jasonthe last name is:Smith                                                                         
+Susanthe last name is:Porter                                                                        
+Debbiethe last name is:Saillez                                                                      
+Anthonythe last name is:Rogers                                                                      
+Stephaniethe last name is:Walters                                                                   
+Lynnthe last name is:Westra                                                                         
+Jenniferthe last name is:Poole                                                                      
+Ryanthe last name is:Baily                                                                          
+Lewisthe last name is:Crow                                                                          
+Johnthe last name is:Cochran                                                                        
+Beckythe last name is:Roach                                                                         
+Johnthe last name is:Jackson                                                                        
+Paulthe last name is:Kowalczyk                                                                      
+Lindathe last name is:Davis                                                                         
+J.C.the last name is:Jones                                                                          
+Chasitythe last name is:Wright                                                                      
+Keiththe last name is:Vanderchuck                                                                   
+Allenthe last name is:Mcginnis                                                                      
+Joethe last name is:Sakic                                                                           
+
+22 rows selected.
+
+SQL> select pt_fname||' the last name is:'||pt_lname from patient;
+
+PT_FNAME||'THELASTNAMEIS:'||PT_LNAME                                                                
+------------------------------------------------                                                    
+Paul the last name is:James                                                                         
+Brian the last name is:Anderson                                                                     
+Scott the last name is:James                                                                        
+Jason the last name is:Smith                                                                        
+Susan the last name is:Porter                                                                       
+Debbie the last name is:Saillez                                                                     
+Anthony the last name is:Rogers                                                                     
+Stephanie the last name is:Walters                                                                  
+Lynn the last name is:Westra                                                                        
+Jennifer the last name is:Poole                                                                     
+Ryan the last name is:Baily                                                                         
+Lewis the last name is:Crow                                                                         
+John the last name is:Cochran                                                                       
+Becky the last name is:Roach                                                                        
+John the last name is:Jackson                                                                       
+Paul the last name is:Kowalczyk                                                                     
+Linda the last name is:Davis                                                                        
+J.C. the last name is:Jones                                                                         
+Chasity the last name is:Wright                                                                     
+Keith the last name is:Vanderchuck                                                                  
+Allen the last name is:Mcginnis                                                                     
+Joe the last name is:Sakic                                                                          
+
+22 rows selected.
+
+SQL> select concat(pt_fname, pt_lname) from patient;
+
+CONCAT(PT_FNAME,PT_LNAME)                                                                           
+------------------------------                                                                      
+PaulJames                                                                                           
+BrianAnderson                                                                                       
+ScottJames                                                                                          
+JasonSmith                                                                                          
+SusanPorter                                                                                         
+DebbieSaillez                                                                                       
+AnthonyRogers                                                                                       
+StephanieWalters                                                                                    
+LynnWestra                                                                                          
+JenniferPoole                                                                                       
+RyanBaily                                                                                           
+LewisCrow                                                                                           
+JohnCochran                                                                                         
+BeckyRoach                                                                                          
+JohnJackson                                                                                         
+PaulKowalczyk                                                                                       
+LindaDavis                                                                                          
+J.C.Jones                                                                                           
+ChasityWright                                                                                       
+KeithVanderchuck                                                                                    
+AllenMcginnis                                                                                       
+JoeSakic                                                                                            
+
+22 rows selected.
+
+SQL> select concat(concat(pt_fname, ' '),pt_lname) from patient;
+
+CONCAT(CONCAT(PT_FNAME,''),PT_L                                                                     
+-------------------------------                                                                     
+Paul James                                                                                          
+Brian Anderson                                                                                      
+Scott James                                                                                         
+Jason Smith                                                                                         
+Susan Porter                                                                                        
+Debbie Saillez                                                                                      
+Anthony Rogers                                                                                      
+Stephanie Walters                                                                                   
+Lynn Westra                                                                                         
+Jennifer Poole                                                                                      
+Ryan Baily                                                                                          
+Lewis Crow                                                                                          
+John Cochran                                                                                        
+Becky Roach                                                                                         
+John Jackson                                                                                        
+Paul Kowalczyk                                                                                      
+Linda Davis                                                                                         
+J.C. Jones                                                                                          
+Chasity Wright                                                                                      
+Keith Vanderchuck                                                                                   
+Allen Mcginnis                                                                                      
+Joe Sakic                                                                                           
+
+22 rows selected.
+
+SQL> select concat(concat(pt_fname, ' '),pt_lname) patname from patient;
+
+PATNAME                                                                                             
+-------------------------------                                                                     
+Paul James                                                                                          
+Brian Anderson                                                                                      
+Scott James                                                                                         
+Jason Smith                                                                                         
+Susan Porter                                                                                        
+Debbie Saillez                                                                                      
+Anthony Rogers                                                                                      
+Stephanie Walters                                                                                   
+Lynn Westra                                                                                         
+Jennifer Poole                                                                                      
+Ryan Baily                                                                                          
+Lewis Crow                                                                                          
+John Cochran                                                                                        
+Becky Roach                                                                                         
+John Jackson                                                                                        
+Paul Kowalczyk                                                                                      
+Linda Davis                                                                                         
+J.C. Jones                                                                                          
+Chasity Wright                                                                                      
+Keith Vanderchuck                                                                                   
+Allen Mcginnis                                                                                      
+Joe Sakic                                                                                           
+
+22 rows selected.
+
+SQL> spool off
